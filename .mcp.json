@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "notebooklm": {
+      "command": "npx",
+      "args": ["notebooklm-mcp@latest"],
+      "env": {
+        "NOTEBOOKLM_PROFILE": "full",
+        "NOTEBOOKLM_DISABLED_TOOLS": "cleanup_data,re_auth,remove_notebook",
+        "HEADLESS": "true"
+      }
+    }
+  }
+}
