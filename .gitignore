@@ -1,0 +1,2 @@
+# Per-session state for the NotebookLM memory hooks
+.claude/.memory-state/
