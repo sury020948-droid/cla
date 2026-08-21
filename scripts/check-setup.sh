@@ -58,16 +58,47 @@ else
   bad ".claude/memory.json missing — run ./scripts/setup-notebooklm.sh \"<your notebook URL>\""
 fi
 
-head_ "4. Google login"
-AUTH="${XDG_DATA_HOME:-$HOME/.local/share}/notebooklm-mcp/chrome_profile"
-[ "$(uname)" = "Darwin" ] && AUTH="$HOME/Library/Application Support/notebooklm-mcp/chrome_profile"
-if [ -d "$AUTH" ] && [ -n "$(ls -A "$AUTH" 2>/dev/null)" ]; then
-  ok "Chrome profile has a stored session"
+head_ "4. Browser"
+# patchright ships no postinstall, so the browser is missing until someone
+# installs it, and setup_auth then fails by quietly opening no window at all.
+BR="${PLAYWRIGHT_BROWSERS_PATH:-}"
+if [ -z "$BR" ]; then
+  case "$(uname -s)" in
+    Darwin)               BR="$HOME/Library/Caches/ms-playwright" ;;
+    MINGW*|MSYS*|CYGWIN*) BR="${LOCALAPPDATA:-$HOME/AppData/Local}/ms-playwright" ;;
+    *)                    BR="${XDG_CACHE_HOME:-$HOME/.cache}/ms-playwright" ;;
+  esac
+fi
+if [ -d "$BR" ] && ls -d "$BR"/chromium* >/dev/null 2>&1; then
+  ok "chromium for patchright present"
 else
-  bad "not logged in — start claude and say: run setup_auth"
+  bad "no browser — run: npx patchright install chromium (setup_auth cannot open a window without it)"
 fi
 
-head_ "5. Hooks"
+head_ "5. Google login"
+# The package resolves its data dir with envPaths("notebooklm-mcp", {suffix:""}),
+# which lands somewhere different on each OS — and the account switcher can nest
+# the profile under accounts/<name>/. Resolve the root per platform, then look
+# for any populated chrome_profile beneath it rather than one fixed path.
+DATA="${NOTEBOOKLM_DATA_DIR:-}"
+if [ -z "$DATA" ]; then
+  case "$(uname -s)" in
+    Darwin)               DATA="$HOME/Library/Application Support/notebooklm-mcp" ;;
+    MINGW*|MSYS*|CYGWIN*) DATA="${LOCALAPPDATA:-$HOME/AppData/Local}/notebooklm-mcp/Data" ;;
+    *)                    DATA="${XDG_DATA_HOME:-$HOME/.local/share}/notebooklm-mcp" ;;
+  esac
+fi
+PROF=""
+for d in $(find "$DATA" -maxdepth 3 -type d -name chrome_profile 2>/dev/null); do
+  [ -n "$(ls -A "$d" 2>/dev/null)" ] && { PROF="$d"; break; }
+done
+if [ -n "$PROF" ]; then
+  ok "Google session stored — $PROF"
+else
+  bad "not logged in — start claude and say: run setup_auth (looked under $DATA)"
+fi
+
+head_ "6. Hooks"
 for h in memory-session-start memory-mark-dirty memory-stop-guard memory-saved; do
   [ -x ".claude/hooks/$h.sh" ] && ok "$h.sh" || bad "$h.sh missing or not executable"
 done
@@ -87,14 +118,14 @@ if [ -x .claude/hooks/memory-stop-guard.sh ]; then
   rm -f ".claude/.memory-state/$T".* 2>/dev/null
 fi
 
-head_ "6. Graph"
+head_ "7. Graph"
 if command -v graphify >/dev/null 2>&1 && [ -f graphify-out/graph.json ]; then
   ok "graph present — $(jq -r '(.nodes|length) as $n | (.links|length) as $e | "\($n) nodes, \($e) edges"' graphify-out/graph.json 2>/dev/null)"
 else
   soft "no graph yet — run: graphify update ."
 fi
 
-head_ "7. Ponytail"
+head_ "8. Ponytail"
 if command -v claude >/dev/null 2>&1; then
   if claude plugin list 2>/dev/null | grep -q ponytail; then
     ok "ponytail plugin installed"

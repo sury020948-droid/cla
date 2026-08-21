@@ -15,6 +15,20 @@ say()  { printf '\033[1;36m==>\033[0m %s\n' "$*"; }
 # Anything that shells out to `claude` gets a ceiling: these are conveniences,
 # never worth stalling the setup over.
 bounded() { local s="$1"; shift; if command -v timeout >/dev/null 2>&1; then timeout "$s" "$@"; else "$@"; fi; }
+
+# patchright stores browsers in playwright's cache; honour an explicit override.
+browser_root() {
+  if [ -n "${PLAYWRIGHT_BROWSERS_PATH:-}" ]; then printf '%s' "$PLAYWRIGHT_BROWSERS_PATH"; return; fi
+  case "$(uname -s)" in
+    Darwin)          printf '%s' "$HOME/Library/Caches/ms-playwright" ;;
+    MINGW*|MSYS*|CYGWIN*) printf '%s' "${LOCALAPPDATA:-$HOME/AppData/Local}/ms-playwright" ;;
+    *)               printf '%s' "${XDG_CACHE_HOME:-$HOME/.cache}/ms-playwright" ;;
+  esac
+}
+browser_installed() {
+  local d; d="$(browser_root)"
+  [ -d "$d" ] && ls -d "$d"/chromium* >/dev/null 2>&1
+}
 warn() { printf '\033[1;33m!!\033[0m %s\n' "$*"; }
 die()  { printf '\033[1;31mxx\033[0m %s\n' "$*" >&2; exit 1; }
 
@@ -39,10 +53,22 @@ command -v jq  >/dev/null || die "jq not found. Install it (brew install jq / ap
 say "Node $(node -v), npx and jq present."
 
 # 2. MCP server ---------------------------------------------------------------
-# No prefetch here. notebooklm-mcp does not implement --version, so `npx ...
-# --version` starts the stdio server instead of printing anything and then
-# blocks on stdin forever. Claude Code fetches the package on first use anyway.
+# No prefetch of the server itself: notebooklm-mcp does not implement --version,
+# so `npx ... --version` starts the stdio server instead of printing anything
+# and then blocks on stdin forever. Claude Code fetches it on first use anyway.
 say "notebooklm-mcp will be fetched automatically on first use."
+
+# The browser is a different matter. notebooklm-mcp drives Chrome through
+# patchright, which ships no postinstall step, so nothing downloads the browser
+# on its own. Without it setup_auth cannot open a window and simply appears to
+# do nothing. This prints progress, so a slow download does not look like a hang.
+if browser_installed; then
+  say "Browser for patchright already installed."
+else
+  say "Downloading the browser patchright needs (~150MB, a few minutes)..."
+  npx --yes patchright install chromium \
+    || warn "Browser download failed. Run 'npx patchright install chromium' by hand before setup_auth."
+fi
 
 # 3. Register the server with Claude Code -----------------------------------
 # .mcp.json in the repo already declares it project-wide. Registering with the
@@ -96,10 +122,15 @@ jq -n \
 say "Wrote .claude/memory.json -> $NOTEBOOK_NAME"
 
 # 5. Auth ---------------------------------------------------------------------
-AUTH_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/notebooklm-mcp/chrome_profile"
-[ "$(uname)" = "Darwin" ] && AUTH_DIR="$HOME/Library/Application Support/notebooklm-mcp/chrome_profile"
+# envPaths("notebooklm-mcp", {suffix:""}) resolves differently per OS.
+case "$(uname -s)" in
+  Darwin)               AUTH_ROOT="$HOME/Library/Application Support/notebooklm-mcp" ;;
+  MINGW*|MSYS*|CYGWIN*) AUTH_ROOT="${LOCALAPPDATA:-$HOME/AppData/Local}/notebooklm-mcp/Data" ;;
+  *)                    AUTH_ROOT="${XDG_DATA_HOME:-$HOME/.local/share}/notebooklm-mcp" ;;
+esac
+AUTH_DIR="$(find "$AUTH_ROOT" -maxdepth 3 -type d -name chrome_profile 2>/dev/null | head -1)"
 
-if [ -d "$AUTH_DIR" ]; then
+if [ -n "$AUTH_DIR" ] && [ -n "$(ls -A "$AUTH_DIR" 2>/dev/null)" ]; then
   say "Google login already stored ($AUTH_DIR)."
 else
   cat <<'EOF'
