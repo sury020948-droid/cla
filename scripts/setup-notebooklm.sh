@@ -25,6 +25,15 @@ browser_root() {
     *)               printf '%s' "${XDG_CACHE_HOME:-$HOME/.cache}/ms-playwright" ;;
   esac
 }
+system_chrome() {
+  case "$(uname -s)" in
+    Darwin) [ -d "/Applications/Google Chrome.app" ] ;;
+    MINGW*|MSYS*|CYGWIN*)
+      [ -f "${PROGRAMFILES:-/c/Program Files}/Google/Chrome/Application/chrome.exe" ] \
+      || [ -f "${LOCALAPPDATA:-$HOME/AppData/Local}/Google/Chrome/Application/chrome.exe" ] ;;
+    *) command -v google-chrome >/dev/null 2>&1 || command -v chromium >/dev/null 2>&1 ;;
+  esac
+}
 browser_installed() {
   local d; d="$(browser_root)"
   [ -d "$d" ] && ls -d "$d"/chromium* >/dev/null 2>&1
@@ -58,16 +67,18 @@ say "Node $(node -v), npx and jq present."
 # and then blocks on stdin forever. Claude Code fetches it on first use anyway.
 say "notebooklm-mcp will be fetched automatically on first use."
 
-# The browser is a different matter. notebooklm-mcp drives Chrome through
-# patchright, which ships no postinstall step, so nothing downloads the browser
-# on its own. Without it setup_auth cannot open a window and simply appears to
-# do nothing. This prints progress, so a slow download does not look like a hang.
-if browser_installed; then
-  say "Browser for patchright already installed."
+# The browser is a different matter. patchright drives the system Chrome by
+# default and falls back to a bundled chromium, but ships no postinstall step,
+# so a machine with neither has nothing for setup_auth to open — and setup_auth
+# then simply appears to do nothing. Only download when there is no Chrome.
+if system_chrome; then
+  say "Using the system Chrome install (patchright's default channel)."
+elif browser_installed; then
+  say "Bundled chromium already installed."
 else
-  say "Downloading the browser patchright needs (~150MB, a few minutes)..."
+  say "No Chrome found. Downloading a bundled chromium (~150MB, a few minutes)..."
   npx --yes patchright install chromium \
-    || warn "Browser download failed. Run 'npx patchright install chromium' by hand before setup_auth."
+    || warn "Download failed. Install Google Chrome, or run 'npx patchright install chromium'."
 fi
 
 # 3. Register the server with Claude Code -----------------------------------

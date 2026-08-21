@@ -59,8 +59,25 @@ else
 fi
 
 head_ "4. Browser"
-# patchright ships no postinstall, so the browser is missing until someone
-# installs it, and setup_auth then fails by quietly opening no window at all.
+# patchright defaults to channel "chrome", i.e. the Chrome already installed on
+# the machine; the downloaded chromium is only the fallback when that fails.
+# Either one is enough, so only report trouble when neither is present.
+SYS_CHROME=""
+case "$(uname -s)" in
+  Darwin)
+    [ -d "/Applications/Google Chrome.app" ] && SYS_CHROME="/Applications/Google Chrome.app" ;;
+  MINGW*|MSYS*|CYGWIN*)
+    for c in "${PROGRAMFILES:-/c/Program Files}/Google/Chrome/Application/chrome.exe" \
+             "${ProgramFiles(x86):-/c/Program Files (x86)}/Google/Chrome/Application/chrome.exe" \
+             "${LOCALAPPDATA:-$HOME/AppData/Local}/Google/Chrome/Application/chrome.exe"; do
+      [ -f "$c" ] && { SYS_CHROME="$c"; break; }
+    done ;;
+  *)
+    for c in google-chrome google-chrome-stable chromium chromium-browser; do
+      command -v "$c" >/dev/null 2>&1 && { SYS_CHROME="$(command -v "$c")"; break; }
+    done ;;
+esac
+
 BR="${PLAYWRIGHT_BROWSERS_PATH:-}"
 if [ -z "$BR" ]; then
   case "$(uname -s)" in
@@ -69,10 +86,17 @@ if [ -z "$BR" ]; then
     *)                    BR="${XDG_CACHE_HOME:-$HOME/.cache}/ms-playwright" ;;
   esac
 fi
-if [ -d "$BR" ] && ls -d "$BR"/chromium* >/dev/null 2>&1; then
-  ok "chromium for patchright present"
+BUNDLED=""
+ls -d "$BR"/chromium* >/dev/null 2>&1 && BUNDLED="$BR"
+
+if [ -n "$SYS_CHROME" ]; then
+  ok "system Chrome — $SYS_CHROME"
+  [ -n "$BUNDLED" ] && ok "bundled chromium also available (fallback)" \
+                    || soft "no bundled chromium fallback (only needed if Chrome fails to launch)"
+elif [ -n "$BUNDLED" ]; then
+  ok "bundled chromium — $BUNDLED"
 else
-  bad "no browser — run: npx patchright install chromium (setup_auth cannot open a window without it)"
+  bad "no browser — install Google Chrome, or run: npx patchright install chromium"
 fi
 
 head_ "5. Google login"
