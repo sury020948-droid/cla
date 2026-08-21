@@ -12,6 +12,9 @@ NOTEBOOK_URL="${1:-}"
 NOTEBOOK_NAME="${2:-Claude Memory}"
 
 say()  { printf '\033[1;36m==>\033[0m %s\n' "$*"; }
+# Anything that shells out to `claude` gets a ceiling: these are conveniences,
+# never worth stalling the setup over.
+bounded() { local s="$1"; shift; if command -v timeout >/dev/null 2>&1; then timeout "$s" "$@"; else "$@"; fi; }
 warn() { printf '\033[1;33m!!\033[0m %s\n' "$*"; }
 die()  { printf '\033[1;31mxx\033[0m %s\n' "$*" >&2; exit 1; }
 
@@ -35,20 +38,21 @@ command -v npx >/dev/null || die "npx not found (comes with npm)."
 command -v jq  >/dev/null || die "jq not found. Install it (brew install jq / apt install jq)."
 say "Node $(node -v), npx and jq present."
 
-# 2. Pull the MCP server into the npx cache ---------------------------------
-say "Fetching notebooklm-mcp..."
-npx --yes notebooklm-mcp@latest --version >/dev/null 2>&1 \
-  || warn "Could not run notebooklm-mcp --version; it will still be fetched on first use."
+# 2. MCP server ---------------------------------------------------------------
+# No prefetch here. notebooklm-mcp does not implement --version, so `npx ...
+# --version` starts the stdio server instead of printing anything and then
+# blocks on stdin forever. Claude Code fetches the package on first use anyway.
+say "notebooklm-mcp will be fetched automatically on first use."
 
 # 3. Register the server with Claude Code -----------------------------------
 # .mcp.json in the repo already declares it project-wide. Registering with the
 # CLI too makes it available outside this directory and is harmless if it exists.
 if command -v claude >/dev/null; then
-  if claude mcp list 2>/dev/null | grep -q '^notebooklm'; then
+  if bounded 60 claude mcp list 2>/dev/null | grep -q '^notebooklm'; then
     say "MCP server 'notebooklm' already registered."
   else
     say "Registering MCP server with Claude Code..."
-    claude mcp add notebooklm -- npx notebooklm-mcp@latest \
+    bounded 60 claude mcp add notebooklm -- npx notebooklm-mcp@latest \
       || warn "claude mcp add failed; .mcp.json in this repo still covers this project."
   fi
 else
