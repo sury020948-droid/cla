@@ -7,6 +7,7 @@ read_hook_input
 
 memory_enabled || exit 0
 [ -f "$MEMORY_CONFIG" ] || exit 0
+memory_ready || exit 0
 
 SESSION_ID="$(hook_field '.session_id')"
 STOP_ACTIVE="$(hook_field '.stop_hook_active')"

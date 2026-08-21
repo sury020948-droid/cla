@@ -115,6 +115,21 @@
       "source_location": "L25"
     },
     {
+      "id": "claude_hooks_memory_common_memory_ready",
+      "label": "memory_ready()",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "memory-common.sh",
+      "file_type": "code",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_function"
+      },
+      "norm_label": "memory_ready()",
+      "source_file": ".claude/hooks/memory-common.sh",
+      "source_location": "L39"
+    },
+    {
       "id": "claude_hooks_memory_common_read_hook_input",
       "label": "read_hook_input()",
       "_origin": "ast",
@@ -158,6 +173,90 @@
       "norm_label": "memory-common.sh script",
       "source_file": ".claude/hooks/memory-common.sh",
       "source_location": "L1"
+    },
+    {
+      "id": "docs_notebooklm_memory",
+      "label": "notebooklm-memory.md",
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "NotebookLM as persistent memory",
+      "file_type": "document",
+      "node_kind": "page",
+      "norm_label": "notebooklm-memory.md",
+      "source_file": "docs/notebooklm-memory.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "docs_notebooklm_memory_how_it_fits_together",
+      "label": "How it fits together",
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "NotebookLM as persistent memory",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "how it fits together",
+      "source_file": "docs/notebooklm-memory.md",
+      "source_location": "L7"
+    },
+    {
+      "id": "docs_notebooklm_memory_known_constraints",
+      "label": "Known constraints",
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "NotebookLM as persistent memory",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "known constraints",
+      "source_file": "docs/notebooklm-memory.md",
+      "source_location": "L53"
+    },
+    {
+      "id": "docs_notebooklm_memory_notebooklm_as_persistent_memory",
+      "label": "NotebookLM as persistent memory",
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "NotebookLM as persistent memory",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "notebooklm as persistent memory",
+      "source_file": "docs/notebooklm-memory.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "docs_notebooklm_memory_rules_of_use",
+      "label": "Rules of use",
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "NotebookLM as persistent memory",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "rules of use",
+      "source_file": "docs/notebooklm-memory.md",
+      "source_location": "L65"
+    },
+    {
+      "id": "docs_notebooklm_memory_setup",
+      "label": "Setup",
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "NotebookLM as persistent memory",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "setup",
+      "source_file": "docs/notebooklm-memory.md",
+      "source_location": "L28"
+    },
+    {
+      "id": "docs_notebooklm_memory_whose_account_the_notes_land_in",
+      "label": "Whose account the notes land in",
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "NotebookLM as persistent memory",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "whose account the notes land in",
+      "source_file": "docs/notebooklm-memory.md",
+      "source_location": "L21"
     },
     {
       "id": "env_var_headless",
@@ -761,6 +860,72 @@
       "weight": 1.0
     },
     {
+      "source": "docs_notebooklm_memory",
+      "target": "docs_notebooklm_memory_notebooklm_as_persistent_memory",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/notebooklm-memory.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_notebooklm_memory_notebooklm_as_persistent_memory",
+      "target": "docs_notebooklm_memory_whose_account_the_notes_land_in",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/notebooklm-memory.md",
+      "source_location": "L21",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_notebooklm_memory_notebooklm_as_persistent_memory",
+      "target": "docs_notebooklm_memory_setup",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/notebooklm-memory.md",
+      "source_location": "L28",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_notebooklm_memory_notebooklm_as_persistent_memory",
+      "target": "docs_notebooklm_memory_known_constraints",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/notebooklm-memory.md",
+      "source_location": "L53",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_notebooklm_memory_notebooklm_as_persistent_memory",
+      "target": "docs_notebooklm_memory_rules_of_use",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/notebooklm-memory.md",
+      "source_location": "L65",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_notebooklm_memory_notebooklm_as_persistent_memory",
+      "target": "docs_notebooklm_memory_how_it_fits_together",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/notebooklm-memory.md",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
       "source": "mcp",
       "target": "mcp_mcp_server_notebooklm",
       "relation": "contains",
@@ -849,6 +1014,17 @@
       "weight": 1.0
     },
     {
+      "source": "claude_hooks_memory_common",
+      "target": "claude_hooks_memory_common_memory_ready",
+      "relation": "defines",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/hooks/memory-common.sh",
+      "source_location": "L39",
+      "weight": 1.0
+    },
+    {
       "source": "scripts_setup_notebooklm",
       "target": "scripts_setup_notebooklm_say",
       "relation": "defines",
@@ -916,5 +1092,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "8827215868a46f2f5d5781a32c18c8fdbaf7a3e9"
+  "built_at_commit": "41c77f54fa8b598d48c10a4b9598096ca31d322e"
 }

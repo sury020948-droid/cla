@@ -8,5 +8,6 @@
   "6": "memory-mark-dirty.sh",
   "7": "memory-saved.sh",
   "8": "memory-session-start.sh",
-  "9": "memory-stop-guard.sh"
+  "9": "memory-stop-guard.sh",
+  "10": "NotebookLM as persistent memory"
 }

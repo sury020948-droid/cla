@@ -1,16 +1,16 @@
 # Graph Report - cla  (2026-08-21)
 
 ## Corpus Check
-- 13 files · ~2,470 words
+- 14 files · ~3,043 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 39 nodes · 32 edges · 10 communities (4 shown, 6 thin omitted)
+- 47 nodes · 39 edges · 11 communities (5 shown, 6 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `88272158`
+- Built from commit: `41c77f54`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -25,18 +25,19 @@
 - memory-saved.sh
 - memory-session-start.sh
 - memory-stop-guard.sh
+- NotebookLM as persistent memory
 
 ## God Nodes (most connected - your core abstractions)
-1. `notebooklm` - 5 edges
-2. `setup-notebooklm.sh script` - 4 edges
-3. `memory-save` - 4 edges
-4. `memory-recall` - 3 edges
-5. `say()` - 2 edges
-6. `warn()` - 2 edges
-7. `die()` - 2 edges
-8. `memory-common.sh script` - 1 edges
-9. `memory-mark-dirty.sh script` - 1 edges
-10. `memory-saved.sh script` - 1 edges
+1. `NotebookLM as persistent memory` - 6 edges
+2. `notebooklm` - 5 edges
+3. `setup-notebooklm.sh script` - 4 edges
+4. `memory-save` - 4 edges
+5. `memory-recall` - 3 edges
+6. `say()` - 2 edges
+7. `warn()` - 2 edges
+8. `die()` - 2 edges
+9. `memory-common.sh script` - 1 edges
+10. `memory-mark-dirty.sh script` - 1 edges
 
 ## Surprising Connections (you probably didn't know these)
 - None detected - all connections are within the same source files.
@@ -44,7 +45,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (10 total, 6 thin omitted)
+## Communities (11 total, 6 thin omitted)
 
 ### Community 2 - "notebooklm"
 Cohesion: 0.33
@@ -62,8 +63,12 @@ Nodes (4): die(), say(), setup-notebooklm.sh script, warn()
 Cohesion: 0.50
 Nodes (3): memory-recall, Rules, Steps
 
+### Community 10 - "NotebookLM as persistent memory"
+Cohesion: 0.29
+Nodes (6): How it fits together, Known constraints, NotebookLM as persistent memory, Rules of use, Setup, Whose account the notes land in
+
 ## Knowledge Gaps
-- **16 isolated node(s):** `memory-common.sh script`, `memory-mark-dirty.sh script`, `memory-saved.sh script`, `memory-session-start.sh script`, `memory-stop-guard.sh script` (+11 more)
+- **21 isolated node(s):** `memory-common.sh script`, `memory-mark-dirty.sh script`, `memory-saved.sh script`, `memory-session-start.sh script`, `memory-stop-guard.sh script` (+16 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **6 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
@@ -71,4 +76,4 @@ Nodes (3): memory-recall, Rules, Steps
 _Questions this graph is uniquely positioned to answer:_
 
 - **What connects `memory-common.sh script`, `memory-mark-dirty.sh script`, `memory-saved.sh script` to the rest of the system?**
-  _16 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _21 weakly-connected nodes found - possible documentation gaps or missing edges._

@@ -33,3 +33,11 @@ memory_enabled() {
 
 dirty_file() { printf '%s/%s.dirty' "$MEMORY_STATE_DIR" "${1:-unknown}"; }
 saved_file() { printf '%s/%s.saved' "$MEMORY_STATE_DIR" "${1:-unknown}"; }
+# Setup writes a real notebook id; the checked-in template carries a placeholder.
+# Until that is replaced there is no notebook to read from or write to, so the
+# hooks stay quiet rather than demanding a save that cannot land.
+memory_ready() {
+  local id
+  id="$(memory_config '.notebook_id')"
+  [ -n "$id" ] && [ "$id" != "abc123" ]
+}

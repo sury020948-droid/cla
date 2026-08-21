@@ -6,9 +6,9 @@
     "semantic_hash": ""
   },
   ".claude/hooks/memory-common.sh": {
-    "mtime": 1787240924.3488984,
-    "seen": 1787274172.5681448,
-    "ast_hash": "933d8e8b02ca36b7f1e8b10f62bd9b67",
+    "mtime": 1787274338.9429002,
+    "seen": 1787274374.167114,
+    "ast_hash": "47fce818e487bc114d2508732aff9a25",
     "semantic_hash": ""
   },
   ".claude/hooks/memory-mark-dirty.sh": {
@@ -24,20 +24,20 @@
     "semantic_hash": ""
   },
   ".claude/hooks/memory-session-start.sh": {
-    "mtime": 1787240192.8529193,
-    "seen": 1787274172.568153,
-    "ast_hash": "912d8dc248e18adcb97bf02b8b5f9162",
+    "mtime": 1787274338.9593496,
+    "seen": 1787274374.1671278,
+    "ast_hash": "25aeef342271d7873687448dd4e0c521",
     "semantic_hash": ""
   },
   ".claude/hooks/memory-stop-guard.sh": {
-    "mtime": 1787240697.136905,
-    "seen": 1787274172.5681548,
-    "ast_hash": "ee05570b3ab56653d9ed5d0820f5bfbf",
+    "mtime": 1787274338.9630334,
+    "seen": 1787274374.16713,
+    "ast_hash": "8fd37f3868abea35b97f107d77d4da79",
     "semantic_hash": ""
   },
   ".claude/memory.json": {
-    "mtime": 1787240937.088898,
-    "seen": 1787274172.5681567,
+    "mtime": 1787274351.1116807,
+    "seen": 1787274374.1671329,
     "ast_hash": "334ec90db083c64ddb9586bb44aa7e12",
     "semantic_hash": ""
   },
@@ -75,6 +75,12 @@
     "mtime": 1787240716.2049043,
     "seen": 1787274172.5681744,
     "ast_hash": "5cdeb037bc9e2e946669ab7864a8561a",
+    "semantic_hash": ""
+  },
+  "docs/notebooklm-memory.md": {
+    "mtime": 1787274373.8547697,
+    "seen": 1787274374.1671553,
+    "ast_hash": "64cafc9ef25da9310896f03283200ec8",
     "semantic_hash": ""
   }
 }
