@@ -7,8 +7,7 @@
       ],
       "env": {
         "NOTEBOOKLM_PROFILE": "full",
-        "NOTEBOOKLM_DISABLED_TOOLS": "remove_notebook",
-        "HEADLESS": "true"
+        "NOTEBOOKLM_DISABLED_TOOLS": "remove_notebook"
       }
     }
   }
