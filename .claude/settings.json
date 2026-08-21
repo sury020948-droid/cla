@@ -1,4 +1,5 @@
 {
+  "outputStyle": "VFF v2",
   "hooks": {
     "PreToolUse": [
       {
@@ -16,6 +17,17 @@
           {
             "type": "command",
             "command": "/root/.local/bin/graphify hook-guard read"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/vff-reminder.sh\"",
+            "timeout": 10
           }
         ]
       }

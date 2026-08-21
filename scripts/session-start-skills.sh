@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 # SessionStart hook — keeps this machine provisioned with no manual step.
 #
-# The four skills in .claude/skills/ are committed, so they already load in any
-# clone of this repo. This hook covers the machine-level half: the same skills
-# under ~/.claude/skills (so they apply in *every* project on this device) plus
-# GSD, which has no project-level install.
+# The skills in .claude/skills/ are committed, so they already load in any clone
+# of this repo. This hook covers the machine-level half: the same skills under
+# ~/.claude/skills (so they apply in *every* project on this device), GSD, which
+# has no project-level install, and VFF's always-on output style.
 #
 # It never blocks session start. When everything is present it exits in a few
 # milliseconds without spawning node; when something is missing it hands the
@@ -31,6 +31,9 @@ done
 if [ ! -f "$GLOBAL_SKILLS/gsd-help/SKILL.md" ] && [ ! -f "$CLAUDE_HOME/commands/gsd-help.md" ]; then
   needs_setup=1
 fi
+# VFF: the output style is the piece that has to be present for always-on mode,
+# so probe that rather than the skill.
+[ -f "$CLAUDE_HOME/output-styles/vff-v2.md" ] || needs_setup=1
 
 [ "$needs_setup" -eq 0 ] && exit 0
 

@@ -10,7 +10,9 @@
 # Project-level skills live in .claude/skills/ and are committed, so they are
 # already available in any clone without running this. What this script adds is
 # the *machine-level* half: the same four skills under ~/.claude/skills so they
-# apply in every project on this device, plus GSD, which only installs globally.
+# apply in every project on this device, plus GSD, which only installs globally,
+# plus VFF (value-for-fable) — its skill, agent, output styles and reminder hook
+# copied out of .claude/ so the always-on style is on in every project too.
 
 set -uo pipefail
 
@@ -128,6 +130,129 @@ else
       warn "gsd-core install failed — check network access to registry.npmjs.org"
     fi
   fi
+fi
+echo
+
+# --- VFF (value-for-fable) ---------------------------------------------------
+# VFF is vendored under .claude/ and committed, so it already loads inside this
+# repo. What this adds is the machine-level half: the same files under ~/.claude
+# so VFF applies in every project on this device, plus the always-on output
+# style switched on in the global settings.
+#
+# Upstream is github.com/itsinseong/value-for-fable (AGPL-3.0-or-later). The
+# provenance and the two deltas we carry are recorded in
+# .claude/skills/itsvff/UPSTREAM.md.
+echo "VFF / value-for-fable (global):"
+
+# Copies one repo path to the same-named spot under ~/.claude, never over an
+# existing file — consistent with the rest of this script.
+copy_if_absent() {
+  src="$REPO_ROOT/$1"
+  dst="$CLAUDE_HOME/$2"
+  label="$2"
+  if [ -e "$dst" ]; then
+    ok "$label"
+    return 0
+  fi
+  if [ ! -e "$src" ]; then
+    warn "$label — missing from the repo at $1"
+    return 0
+  fi
+  missing=$((missing + 1))
+  if [ "$CHECK_ONLY" -eq 1 ]; then
+    add "$label — not installed"
+    return 0
+  fi
+  mkdir -p "$(dirname "$dst")"
+  if cp -R "$src" "$dst"; then
+    ok "$label installed"
+    installed_now=$((installed_now + 1))
+  else
+    warn "$label — copy failed"
+  fi
+}
+
+copy_if_absent ".claude/skills/itsvff"           "skills/itsvff"
+copy_if_absent ".claude/agents/itsvff.md"        "agents/itsvff.md"
+copy_if_absent ".claude/output-styles/vff.md"    "output-styles/vff.md"
+copy_if_absent ".claude/output-styles/vff-v2.md" "output-styles/vff-v2.md"
+copy_if_absent ".claude/hooks/vff-reminder.sh"   "hooks/vff-reminder.sh"
+[ -f "$CLAUDE_HOME/hooks/vff-reminder.sh" ] && chmod +x "$CLAUDE_HOME/hooks/vff-reminder.sh"
+
+# Global settings: turn the always-on style on and register the drift-reminder
+# hook. Both edits are additive — an outputStyle that is already set (to
+# anything, including a different style you chose on purpose) is never
+# replaced, and the hook is appended only when no vff-reminder entry exists.
+if ! command -v python3 >/dev/null 2>&1; then
+  warn "python3 not found — skipping the global settings edit"
+  log "set \"outputStyle\": \"VFF v2\" in $CLAUDE_HOME/settings.json by hand"
+else
+  settings_mode=apply
+  [ "$CHECK_ONLY" -eq 1 ] && settings_mode=check
+  python3 - "$CLAUDE_HOME/settings.json" "$settings_mode" "$CLAUDE_HOME/hooks/vff-reminder.sh" <<'PY'
+import json, os, sys
+
+path, mode, hook_path = sys.argv[1], sys.argv[2], sys.argv[3]
+
+try:
+    data = json.load(open(path)) if os.path.exists(path) else {}
+except (ValueError, OSError) as exc:
+    print("  [warn] %s is unreadable (%s) — leaving it alone" % (path, exc))
+    raise SystemExit(0)
+
+if not isinstance(data, dict):
+    print("  [warn] %s is not a JSON object — leaving it alone" % path)
+    raise SystemExit(0)
+
+pending = []
+
+current_style = data.get("outputStyle")
+if current_style is None:
+    pending.append('outputStyle="VFF v2"')
+elif current_style != "VFF v2":
+    print("  [ok]   outputStyle is already %r — left as is" % current_style)
+
+hooks = data.get("hooks")
+if not isinstance(hooks, dict):
+    hooks = {}
+submit = hooks.get("UserPromptSubmit")
+if not isinstance(submit, list):
+    submit = []
+hook_registered = "vff-reminder.sh" in json.dumps(submit)
+if not hook_registered:
+    pending.append("UserPromptSubmit reminder hook")
+
+if not pending:
+    print("  [ok]   global settings already carry VFF")
+    raise SystemExit(0)
+
+if mode == "check":
+    print("  [add]  global settings — %s" % ", ".join(pending))
+    raise SystemExit(3)
+
+if current_style is None:
+    data["outputStyle"] = "VFF v2"
+if not hook_registered:
+    submit.append({
+        "hooks": [
+            {"type": "command", "command": 'bash "%s"' % hook_path, "timeout": 10}
+        ]
+    })
+    hooks["UserPromptSubmit"] = submit
+    data["hooks"] = hooks
+
+os.makedirs(os.path.dirname(path) or ".", exist_ok=True)
+tmp = path + ".vff-tmp"
+with open(tmp, "w") as fh:
+    json.dump(data, fh, indent=2, ensure_ascii=False)
+    fh.write("\n")
+os.replace(tmp, path)
+print("  [add]  global settings — %s" % ", ".join(pending))
+raise SystemExit(4)
+PY
+  settings_rc=$?
+  [ "$settings_rc" -eq 3 ] && missing=$((missing + 1))
+  [ "$settings_rc" -eq 4 ] && installed_now=$((installed_now + 1))
 fi
 echo
 
