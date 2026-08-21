@@ -1,8 +1,14 @@
 {
   "CLAUDE.md": {
-    "mtime": 1787238080.228928,
-    "seen": 1787238102.4747887,
+    "mtime": 1787239705.5398011,
+    "seen": 1787275794.625225,
     "ast_hash": "82efb97a359f5c7290bf2513d14686be",
+    "semantic_hash": ""
+  },
+  ".claude/settings.json": {
+    "mtime": 1787239705.5398011,
+    "seen": 1787275794.6252184,
+    "ast_hash": "8e354e95633a2e8f9b91523377f1968c",
     "semantic_hash": ""
   }
 }
