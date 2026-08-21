@@ -124,9 +124,10 @@ for d in $(find "$DATA" -maxdepth 3 -type d -name chrome_profile 2>/dev/null); d
   [ -n "$(ls -A "$d" 2>/dev/null)" ] && { PROF="$d"; break; }
 done
 if [ -n "$PROF" ]; then
-  ok "Google session stored — $PROF"
+  ok "profile directory present — $PROF"
+  soft "whether the session is still valid: ask claude to run notebooklm get_health"
 else
-  bad "not logged in — start claude and say: run setup_auth (looked under $DATA)"
+  bad "no profile — start claude and say: run setup_auth (looked under $DATA)"
 fi
 
 head_ "6. Hooks"
