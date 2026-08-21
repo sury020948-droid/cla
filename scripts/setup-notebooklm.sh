@@ -29,8 +29,14 @@ system_chrome() {
   case "$(uname -s)" in
     Darwin) [ -d "/Applications/Google Chrome.app" ] ;;
     MINGW*|MSYS*|CYGWIN*)
-      [ -f "${PROGRAMFILES:-/c/Program Files}/Google/Chrome/Application/chrome.exe" ] \
-      || [ -f "${LOCALAPPDATA:-$HOME/AppData/Local}/Google/Chrome/Application/chrome.exe" ] ;;
+      # No ${ProgramFiles(x86)} here: parentheses are illegal in a bash
+      # variable name and the bad substitution aborts the whole word.
+      local pf86; pf86="$(env | sed -n 's/^ProgramFiles(x86)=//p')"
+      [ -f "${PROGRAMFILES:-}/Google/Chrome/Application/chrome.exe" ] \
+      || [ -f "${pf86:-}/Google/Chrome/Application/chrome.exe" ] \
+      || [ -f "${LOCALAPPDATA:-}/Google/Chrome/Application/chrome.exe" ] \
+      || [ -f "/c/Program Files/Google/Chrome/Application/chrome.exe" ] \
+      || [ -f "/c/Program Files (x86)/Google/Chrome/Application/chrome.exe" ] ;;
     *) command -v google-chrome >/dev/null 2>&1 || command -v chromium >/dev/null 2>&1 ;;
   esac
 }

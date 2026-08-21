@@ -67,11 +67,18 @@ case "$(uname -s)" in
   Darwin)
     [ -d "/Applications/Google Chrome.app" ] && SYS_CHROME="/Applications/Google Chrome.app" ;;
   MINGW*|MSYS*|CYGWIN*)
-    for c in "${PROGRAMFILES:-/c/Program Files}/Google/Chrome/Application/chrome.exe" \
-             "${ProgramFiles(x86):-/c/Program Files (x86)}/Google/Chrome/Application/chrome.exe" \
-             "${LOCALAPPDATA:-$HOME/AppData/Local}/Google/Chrome/Application/chrome.exe"; do
-      [ -f "$c" ] && { SYS_CHROME="$c"; break; }
-    done ;;
+    PF86="$(env | sed -n 's/^ProgramFiles(x86)=//p')"
+    while IFS= read -r c; do
+      [ -n "$c" ] && [ -f "$c" ] && { SYS_CHROME="$c"; break; }
+    done <<EOF
+${PROGRAMFILES:-}/Google/Chrome/Application/chrome.exe
+${PF86:-}/Google/Chrome/Application/chrome.exe
+${LOCALAPPDATA:-}/Google/Chrome/Application/chrome.exe
+/c/Program Files/Google/Chrome/Application/chrome.exe
+/c/Program Files (x86)/Google/Chrome/Application/chrome.exe
+$HOME/AppData/Local/Google/Chrome/Application/chrome.exe
+EOF
+    ;;
   *)
     for c in google-chrome google-chrome-stable chromium chromium-browser; do
       command -v "$c" >/dev/null 2>&1 && { SYS_CHROME="$(command -v "$c")"; break; }
