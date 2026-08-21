@@ -19,6 +19,18 @@
           }
         ]
       }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"$CLAUDE_PROJECT_DIR/scripts/session-start-skills.sh\"",
+            "timeout": 15,
+            "statusMessage": "Checking Claude Code skills..."
+          }
+        ]
+      }
     ]
   }
 }
