@@ -72,13 +72,16 @@ EOF
   exit 0
 fi
 
+# Google answers on both hosts, and a browser may well show the shorter one.
+# The MCP server only knows the canonical host, so take either and normalise.
 case "$NOTEBOOK_URL" in
-  https://notebooklm.google.com/notebook/*) ;;
-  *) die "That does not look like a NotebookLM notebook URL: $NOTEBOOK_URL" ;;
+  https://notebooklm.google.com/notebook/*|https://notebook.google.com/notebook/*) ;;
+  *) die "Expected https://notebooklm.google.com/notebook/<id>, got: $NOTEBOOK_URL" ;;
 esac
 
 NOTEBOOK_ID="${NOTEBOOK_URL##*/notebook/}"
 NOTEBOOK_ID="${NOTEBOOK_ID%%\?*}"
+NOTEBOOK_URL="https://notebooklm.google.com/notebook/$NOTEBOOK_ID"
 
 jq -n \
   --arg url  "$NOTEBOOK_URL" \
