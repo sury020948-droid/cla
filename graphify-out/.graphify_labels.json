@@ -1,3 +1,12 @@
 {
-  "0": "CLAUDE.md"
+  "0": "CLAUDE.md",
+  "1": "memory-common.sh",
+  "2": "notebooklm",
+  "3": "memory-save",
+  "4": "setup-notebooklm.sh",
+  "5": "memory-recall",
+  "6": "memory-mark-dirty.sh",
+  "7": "memory-saved.sh",
+  "8": "memory-session-start.sh",
+  "9": "memory-stop-guard.sh"
 }

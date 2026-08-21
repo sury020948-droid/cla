@@ -1,2 +1,5 @@
 # Per-session state for the NotebookLM memory hooks
 .claude/.memory-state/
+
+# graphify's dated backups of the previous curated graph
+graphify-out/20*/

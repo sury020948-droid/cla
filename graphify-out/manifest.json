@@ -1,8 +1,80 @@
 {
   "CLAUDE.md": {
-    "mtime": 1787238080.228928,
-    "seen": 1787238102.4747887,
-    "ast_hash": "82efb97a359f5c7290bf2513d14686be",
+    "mtime": 1787240855.9169004,
+    "seen": 1787274172.5681772,
+    "ast_hash": "81d3c02ae21953400522e380e5234a08",
+    "semantic_hash": ""
+  },
+  ".claude/hooks/memory-common.sh": {
+    "mtime": 1787240924.3488984,
+    "seen": 1787274172.5681448,
+    "ast_hash": "933d8e8b02ca36b7f1e8b10f62bd9b67",
+    "semantic_hash": ""
+  },
+  ".claude/hooks/memory-mark-dirty.sh": {
+    "mtime": 1787240573.9409084,
+    "seen": 1787274172.568149,
+    "ast_hash": "51720f082b54b084379b52d1b36fed25",
+    "semantic_hash": ""
+  },
+  ".claude/hooks/memory-saved.sh": {
+    "mtime": 1787240663.1609058,
+    "seen": 1787274172.568151,
+    "ast_hash": "8337ee3e945d23c84771500dea0f0b19",
+    "semantic_hash": ""
+  },
+  ".claude/hooks/memory-session-start.sh": {
+    "mtime": 1787240192.8529193,
+    "seen": 1787274172.568153,
+    "ast_hash": "912d8dc248e18adcb97bf02b8b5f9162",
+    "semantic_hash": ""
+  },
+  ".claude/hooks/memory-stop-guard.sh": {
+    "mtime": 1787240697.136905,
+    "seen": 1787274172.5681548,
+    "ast_hash": "ee05570b3ab56653d9ed5d0820f5bfbf",
+    "semantic_hash": ""
+  },
+  ".claude/memory.json": {
+    "mtime": 1787240937.088898,
+    "seen": 1787274172.5681567,
+    "ast_hash": "334ec90db083c64ddb9586bb44aa7e12",
+    "semantic_hash": ""
+  },
+  ".claude/settings.json": {
+    "mtime": 1787240787.4969022,
+    "seen": 1787274172.5681667,
+    "ast_hash": "efc0a2ccb8f315fe863a834bcf617f04",
+    "semantic_hash": ""
+  },
+  ".claude/settings.local.json": {
+    "mtime": 1787263170.1616802,
+    "seen": 1787274172.5681686,
+    "ast_hash": "c901c758100f206b4f43082768ab6b1e",
+    "semantic_hash": ""
+  },
+  ".mcp.json": {
+    "mtime": 1787240066.679707,
+    "seen": 1787274172.56817,
+    "ast_hash": "931208bced53c369fab9d6c5606b1b46",
+    "semantic_hash": ""
+  },
+  "scripts/setup-notebooklm.sh": {
+    "mtime": 1787240843.7009006,
+    "seen": 1787274172.5681713,
+    "ast_hash": "eabae3f86123da41955e8682d8d4c840",
+    "semantic_hash": ""
+  },
+  ".claude/skills/memory-recall/SKILL.md": {
+    "mtime": 1787240732.268904,
+    "seen": 1787274172.5681732,
+    "ast_hash": "dae3c72abfce17f21202bf2e00a97c6e",
+    "semantic_hash": ""
+  },
+  ".claude/skills/memory-save/SKILL.md": {
+    "mtime": 1787240716.2049043,
+    "seen": 1787274172.5681744,
+    "ast_hash": "5cdeb037bc9e2e946669ab7864a8561a",
     "semantic_hash": ""
   }
 }

@@ -26,9 +26,586 @@
       "norm_label": "graphify",
       "source_file": "CLAUDE.md",
       "source_location": "L1"
+    },
+    {
+      "id": "claude_persistent_memory_notebooklm",
+      "label": "Persistent memory (NotebookLM)",
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "CLAUDE.md",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "persistent memory (notebooklm)",
+      "source_file": "CLAUDE.md",
+      "source_location": "L11"
+    },
+    {
+      "id": "claude_hooks_memory_common",
+      "label": "memory-common.sh",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "memory-common.sh",
+      "file_type": "code",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "norm_label": "memory-common.sh",
+      "source_file": ".claude/hooks/memory-common.sh",
+      "source_location": "L1"
+    },
+    {
+      "id": "claude_hooks_memory_common_dirty_file",
+      "label": "dirty_file()",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "memory-common.sh",
+      "file_type": "code",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_function"
+      },
+      "norm_label": "dirty_file()",
+      "source_file": ".claude/hooks/memory-common.sh",
+      "source_location": "L34"
+    },
+    {
+      "id": "claude_hooks_memory_common_hook_field",
+      "label": "hook_field()",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "memory-common.sh",
+      "file_type": "code",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_function"
+      },
+      "norm_label": "hook_field()",
+      "source_file": ".claude/hooks/memory-common.sh",
+      "source_location": "L16"
+    },
+    {
+      "id": "claude_hooks_memory_common_memory_config",
+      "label": "memory_config()",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "memory-common.sh",
+      "file_type": "code",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_function"
+      },
+      "norm_label": "memory_config()",
+      "source_file": ".claude/hooks/memory-common.sh",
+      "source_location": "L20"
+    },
+    {
+      "id": "claude_hooks_memory_common_memory_enabled",
+      "label": "memory_enabled()",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "memory-common.sh",
+      "file_type": "code",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_function"
+      },
+      "norm_label": "memory_enabled()",
+      "source_file": ".claude/hooks/memory-common.sh",
+      "source_location": "L25"
+    },
+    {
+      "id": "claude_hooks_memory_common_read_hook_input",
+      "label": "read_hook_input()",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "memory-common.sh",
+      "file_type": "code",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_function"
+      },
+      "norm_label": "read_hook_input()",
+      "source_file": ".claude/hooks/memory-common.sh",
+      "source_location": "L12"
+    },
+    {
+      "id": "claude_hooks_memory_common_saved_file",
+      "label": "saved_file()",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "memory-common.sh",
+      "file_type": "code",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_function"
+      },
+      "norm_label": "saved_file()",
+      "source_file": ".claude/hooks/memory-common.sh",
+      "source_location": "L35"
+    },
+    {
+      "id": "claude_hooks_memory_common_sh__entry",
+      "label": "memory-common.sh script",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "memory-common.sh",
+      "file_type": "code",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "norm_label": "memory-common.sh script",
+      "source_file": ".claude/hooks/memory-common.sh",
+      "source_location": "L1"
+    },
+    {
+      "id": "env_var_headless",
+      "label": "HEADLESS",
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "notebooklm",
+      "file_type": "code",
+      "metadata": {
+        "mcp_kind": "env_var"
+      },
+      "norm_label": "headless",
+      "source_file": ".mcp.json",
+      "source_location": "L1"
+    },
+    {
+      "id": "env_var_notebooklm_disabled_tools",
+      "label": "NOTEBOOKLM_DISABLED_TOOLS",
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "notebooklm",
+      "file_type": "code",
+      "metadata": {
+        "mcp_kind": "env_var"
+      },
+      "norm_label": "notebooklm_disabled_tools",
+      "source_file": ".mcp.json",
+      "source_location": "L1"
+    },
+    {
+      "id": "env_var_notebooklm_profile",
+      "label": "NOTEBOOKLM_PROFILE",
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "notebooklm",
+      "file_type": "code",
+      "metadata": {
+        "mcp_kind": "env_var"
+      },
+      "norm_label": "notebooklm_profile",
+      "source_file": ".mcp.json",
+      "source_location": "L1"
+    },
+    {
+      "id": "mcp",
+      "label": ".mcp.json",
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "notebooklm",
+      "file_type": "code",
+      "metadata": {
+        "mcp_kind": "mcp_config_file"
+      },
+      "norm_label": ".mcp.json",
+      "source_file": ".mcp.json",
+      "source_location": "L1"
+    },
+    {
+      "id": "mcp_command_npx",
+      "label": "npx",
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "notebooklm",
+      "file_type": "code",
+      "metadata": {
+        "mcp_kind": "mcp_command"
+      },
+      "norm_label": "npx",
+      "source_file": ".mcp.json",
+      "source_location": "L1"
+    },
+    {
+      "id": "mcp_mcp_server_notebooklm",
+      "label": "notebooklm",
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "notebooklm",
+      "file_type": "code",
+      "metadata": {
+        "mcp_kind": "mcp_server"
+      },
+      "norm_label": "notebooklm",
+      "source_file": ".mcp.json",
+      "source_location": "L1"
+    },
+    {
+      "id": "claude_skills_memory_save_skill",
+      "label": "memory-save/SKILL.md",
+      "_origin": "ast",
+      "community": 3,
+      "community_name": "memory-save",
+      "file_type": "document",
+      "frontmatter": {
+        "name": "memory-save",
+        "description": "Write this session&#x27;s decisions and context into the NotebookLM memory notebook so a future session can recall them. Use at the end of a session that changed code, made a decision, or discovered something worth keeping, and whenever the Stop hook reports &quot;Unsaved session memory&quot;. Do not use for reading past memory \u2014 that is memory-recall.",
+        "allowed-tools": "Bash, mcp__notebooklm__add_source, mcp__notebooklm__list_notebooks, mcp__notebooklm__select_notebook, mcp__notebooklm__get_health"
+      },
+      "node_kind": "page",
+      "norm_label": "memory-save/skill.md",
+      "source_file": ".claude/skills/memory-save/SKILL.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "claude_skills_memory_save_skill_memory_save",
+      "label": "memory-save",
+      "_origin": "ast",
+      "community": 3,
+      "community_name": "memory-save",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "memory-save",
+      "source_file": ".claude/skills/memory-save/SKILL.md",
+      "source_location": "L7"
+    },
+    {
+      "id": "claude_skills_memory_save_skill_record_format",
+      "label": "Record format",
+      "_origin": "ast",
+      "community": 3,
+      "community_name": "memory-save",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "record format",
+      "source_file": ".claude/skills/memory-save/SKILL.md",
+      "source_location": "L53"
+    },
+    {
+      "id": "claude_skills_memory_save_skill_rules",
+      "label": "Rules",
+      "_origin": "ast",
+      "community": 3,
+      "community_name": "memory-save",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "rules",
+      "source_file": ".claude/skills/memory-save/SKILL.md",
+      "source_location": "L81"
+    },
+    {
+      "id": "claude_skills_memory_save_skill_steps",
+      "label": "Steps",
+      "_origin": "ast",
+      "community": 3,
+      "community_name": "memory-save",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "steps",
+      "source_file": ".claude/skills/memory-save/SKILL.md",
+      "source_location": "L11"
+    },
+    {
+      "id": "scripts_setup_notebooklm",
+      "label": "setup-notebooklm.sh",
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "setup-notebooklm.sh",
+      "file_type": "code",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "norm_label": "setup-notebooklm.sh",
+      "source_file": "scripts/setup-notebooklm.sh",
+      "source_location": "L1"
+    },
+    {
+      "id": "scripts_setup_notebooklm_die",
+      "label": "die()",
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "setup-notebooklm.sh",
+      "file_type": "code",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_function"
+      },
+      "norm_label": "die()",
+      "source_file": "scripts/setup-notebooklm.sh",
+      "source_location": "L16"
+    },
+    {
+      "id": "scripts_setup_notebooklm_say",
+      "label": "say()",
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "setup-notebooklm.sh",
+      "file_type": "code",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_function"
+      },
+      "norm_label": "say()",
+      "source_file": "scripts/setup-notebooklm.sh",
+      "source_location": "L14"
+    },
+    {
+      "id": "scripts_setup_notebooklm_sh__entry",
+      "label": "setup-notebooklm.sh script",
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "setup-notebooklm.sh",
+      "file_type": "code",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "norm_label": "setup-notebooklm.sh script",
+      "source_file": "scripts/setup-notebooklm.sh",
+      "source_location": "L1"
+    },
+    {
+      "id": "scripts_setup_notebooklm_warn",
+      "label": "warn()",
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "setup-notebooklm.sh",
+      "file_type": "code",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_function"
+      },
+      "norm_label": "warn()",
+      "source_file": "scripts/setup-notebooklm.sh",
+      "source_location": "L15"
+    },
+    {
+      "id": "claude_skills_memory_recall_skill",
+      "label": "memory-recall/SKILL.md",
+      "_origin": "ast",
+      "community": 5,
+      "community_name": "memory-recall",
+      "file_type": "document",
+      "frontmatter": {
+        "name": "memory-recall",
+        "description": "Look up what past sessions decided or did by querying the NotebookLM memory notebook. Use when the user refers to earlier work (&quot;what did we decide&quot;, &quot;why is it like this&quot;, &quot;last time&quot;, &quot;\uc774\uc804\uc5d0&quot;, &quot;\uc65c \uc774\ub807\uac8c \ud588\ub354\ub77c&quot;), or when you are missing context that this session never established. Do not use for facts you can read straight from the code.",
+        "allowed-tools": "Bash, mcp__notebooklm__ask_question, mcp__notebooklm__list_notebooks, mcp__notebooklm__select_notebook"
+      },
+      "node_kind": "page",
+      "norm_label": "memory-recall/skill.md",
+      "source_file": ".claude/skills/memory-recall/SKILL.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "claude_skills_memory_recall_skill_memory_recall",
+      "label": "memory-recall",
+      "_origin": "ast",
+      "community": 5,
+      "community_name": "memory-recall",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "memory-recall",
+      "source_file": ".claude/skills/memory-recall/SKILL.md",
+      "source_location": "L7"
+    },
+    {
+      "id": "claude_skills_memory_recall_skill_rules",
+      "label": "Rules",
+      "_origin": "ast",
+      "community": 5,
+      "community_name": "memory-recall",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "rules",
+      "source_file": ".claude/skills/memory-recall/SKILL.md",
+      "source_location": "L38"
+    },
+    {
+      "id": "claude_skills_memory_recall_skill_steps",
+      "label": "Steps",
+      "_origin": "ast",
+      "community": 5,
+      "community_name": "memory-recall",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "steps",
+      "source_file": ".claude/skills/memory-recall/SKILL.md",
+      "source_location": "L11"
+    },
+    {
+      "id": "claude_hooks_memory_mark_dirty",
+      "label": "memory-mark-dirty.sh",
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "memory-mark-dirty.sh",
+      "file_type": "code",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "norm_label": "memory-mark-dirty.sh",
+      "source_file": ".claude/hooks/memory-mark-dirty.sh",
+      "source_location": "L1"
+    },
+    {
+      "id": "claude_hooks_memory_mark_dirty_sh__entry",
+      "label": "memory-mark-dirty.sh script",
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "memory-mark-dirty.sh",
+      "file_type": "code",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "norm_label": "memory-mark-dirty.sh script",
+      "source_file": ".claude/hooks/memory-mark-dirty.sh",
+      "source_location": "L1"
+    },
+    {
+      "id": "claude_hooks_memory_saved",
+      "label": "memory-saved.sh",
+      "_origin": "ast",
+      "community": 7,
+      "community_name": "memory-saved.sh",
+      "file_type": "code",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "norm_label": "memory-saved.sh",
+      "source_file": ".claude/hooks/memory-saved.sh",
+      "source_location": "L1"
+    },
+    {
+      "id": "claude_hooks_memory_saved_sh__entry",
+      "label": "memory-saved.sh script",
+      "_origin": "ast",
+      "community": 7,
+      "community_name": "memory-saved.sh",
+      "file_type": "code",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "norm_label": "memory-saved.sh script",
+      "source_file": ".claude/hooks/memory-saved.sh",
+      "source_location": "L1"
+    },
+    {
+      "id": "claude_hooks_memory_session_start",
+      "label": "memory-session-start.sh",
+      "_origin": "ast",
+      "community": 8,
+      "community_name": "memory-session-start.sh",
+      "file_type": "code",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "norm_label": "memory-session-start.sh",
+      "source_file": ".claude/hooks/memory-session-start.sh",
+      "source_location": "L1"
+    },
+    {
+      "id": "claude_hooks_memory_session_start_sh__entry",
+      "label": "memory-session-start.sh script",
+      "_origin": "ast",
+      "community": 8,
+      "community_name": "memory-session-start.sh",
+      "file_type": "code",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "norm_label": "memory-session-start.sh script",
+      "source_file": ".claude/hooks/memory-session-start.sh",
+      "source_location": "L1"
+    },
+    {
+      "id": "claude_hooks_memory_stop_guard",
+      "label": "memory-stop-guard.sh",
+      "_origin": "ast",
+      "community": 9,
+      "community_name": "memory-stop-guard.sh",
+      "file_type": "code",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "norm_label": "memory-stop-guard.sh",
+      "source_file": ".claude/hooks/memory-stop-guard.sh",
+      "source_location": "L1"
+    },
+    {
+      "id": "claude_hooks_memory_stop_guard_sh__entry",
+      "label": "memory-stop-guard.sh script",
+      "_origin": "ast",
+      "community": 9,
+      "community_name": "memory-stop-guard.sh",
+      "file_type": "code",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "norm_label": "memory-stop-guard.sh script",
+      "source_file": ".claude/hooks/memory-stop-guard.sh",
+      "source_location": "L1"
     }
   ],
   "links": [
+    {
+      "source": "scripts_setup_notebooklm_sh__entry",
+      "target": "scripts_setup_notebooklm_die",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "scripts/setup-notebooklm.sh",
+      "source_location": "L22",
+      "weight": 1.0
+    },
+    {
+      "source": "scripts_setup_notebooklm_sh__entry",
+      "target": "scripts_setup_notebooklm_say",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "scripts/setup-notebooklm.sh",
+      "source_location": "L25",
+      "weight": 1.0
+    },
+    {
+      "source": "scripts_setup_notebooklm_sh__entry",
+      "target": "scripts_setup_notebooklm_warn",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "scripts/setup-notebooklm.sh",
+      "source_location": "L41",
+      "weight": 1.0
+    },
+    {
+      "source": "mcp_mcp_server_notebooklm",
+      "target": "mcp_command_npx",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "command",
+      "source_file": ".mcp.json",
+      "source_location": "L1",
+      "weight": 1.0
+    },
     {
       "source": "claude",
       "target": "claude_graphify",
@@ -39,7 +616,305 @@
       "source_file": "CLAUDE.md",
       "source_location": "L1",
       "weight": 1.0
+    },
+    {
+      "source": "claude",
+      "target": "claude_persistent_memory_notebooklm",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source_location": "L11",
+      "weight": 1.0
+    },
+    {
+      "source": "claude_hooks_memory_common",
+      "target": "claude_hooks_memory_common_sh__entry",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/hooks/memory-common.sh",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "claude_hooks_memory_mark_dirty",
+      "target": "claude_hooks_memory_mark_dirty_sh__entry",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/hooks/memory-mark-dirty.sh",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "claude_hooks_memory_saved",
+      "target": "claude_hooks_memory_saved_sh__entry",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/hooks/memory-saved.sh",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "claude_hooks_memory_session_start",
+      "target": "claude_hooks_memory_session_start_sh__entry",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/hooks/memory-session-start.sh",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "claude_hooks_memory_stop_guard",
+      "target": "claude_hooks_memory_stop_guard_sh__entry",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/hooks/memory-stop-guard.sh",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "claude_skills_memory_recall_skill",
+      "target": "claude_skills_memory_recall_skill_memory_recall",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/skills/memory-recall/SKILL.md",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "claude_skills_memory_recall_skill_memory_recall",
+      "target": "claude_skills_memory_recall_skill_steps",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/skills/memory-recall/SKILL.md",
+      "source_location": "L11",
+      "weight": 1.0
+    },
+    {
+      "source": "claude_skills_memory_recall_skill_memory_recall",
+      "target": "claude_skills_memory_recall_skill_rules",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/skills/memory-recall/SKILL.md",
+      "source_location": "L38",
+      "weight": 1.0
+    },
+    {
+      "source": "claude_skills_memory_save_skill",
+      "target": "claude_skills_memory_save_skill_memory_save",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/skills/memory-save/SKILL.md",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "claude_skills_memory_save_skill_memory_save",
+      "target": "claude_skills_memory_save_skill_steps",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/skills/memory-save/SKILL.md",
+      "source_location": "L11",
+      "weight": 1.0
+    },
+    {
+      "source": "claude_skills_memory_save_skill_memory_save",
+      "target": "claude_skills_memory_save_skill_record_format",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/skills/memory-save/SKILL.md",
+      "source_location": "L53",
+      "weight": 1.0
+    },
+    {
+      "source": "claude_skills_memory_save_skill_memory_save",
+      "target": "claude_skills_memory_save_skill_rules",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/skills/memory-save/SKILL.md",
+      "source_location": "L81",
+      "weight": 1.0
+    },
+    {
+      "source": "mcp",
+      "target": "mcp_mcp_server_notebooklm",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".mcp.json",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "scripts_setup_notebooklm",
+      "target": "scripts_setup_notebooklm_sh__entry",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "scripts/setup-notebooklm.sh",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "claude_hooks_memory_common",
+      "target": "claude_hooks_memory_common_read_hook_input",
+      "relation": "defines",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/hooks/memory-common.sh",
+      "source_location": "L12",
+      "weight": 1.0
+    },
+    {
+      "source": "claude_hooks_memory_common",
+      "target": "claude_hooks_memory_common_hook_field",
+      "relation": "defines",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/hooks/memory-common.sh",
+      "source_location": "L16",
+      "weight": 1.0
+    },
+    {
+      "source": "claude_hooks_memory_common",
+      "target": "claude_hooks_memory_common_memory_config",
+      "relation": "defines",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/hooks/memory-common.sh",
+      "source_location": "L20",
+      "weight": 1.0
+    },
+    {
+      "source": "claude_hooks_memory_common",
+      "target": "claude_hooks_memory_common_memory_enabled",
+      "relation": "defines",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/hooks/memory-common.sh",
+      "source_location": "L25",
+      "weight": 1.0
+    },
+    {
+      "source": "claude_hooks_memory_common",
+      "target": "claude_hooks_memory_common_dirty_file",
+      "relation": "defines",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/hooks/memory-common.sh",
+      "source_location": "L34",
+      "weight": 1.0
+    },
+    {
+      "source": "claude_hooks_memory_common",
+      "target": "claude_hooks_memory_common_saved_file",
+      "relation": "defines",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/hooks/memory-common.sh",
+      "source_location": "L35",
+      "weight": 1.0
+    },
+    {
+      "source": "scripts_setup_notebooklm",
+      "target": "scripts_setup_notebooklm_say",
+      "relation": "defines",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "scripts/setup-notebooklm.sh",
+      "source_location": "L14",
+      "weight": 1.0
+    },
+    {
+      "source": "scripts_setup_notebooklm",
+      "target": "scripts_setup_notebooklm_warn",
+      "relation": "defines",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "scripts/setup-notebooklm.sh",
+      "source_location": "L15",
+      "weight": 1.0
+    },
+    {
+      "source": "scripts_setup_notebooklm",
+      "target": "scripts_setup_notebooklm_die",
+      "relation": "defines",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "scripts/setup-notebooklm.sh",
+      "source_location": "L16",
+      "weight": 1.0
+    },
+    {
+      "source": "mcp_mcp_server_notebooklm",
+      "target": "env_var_headless",
+      "relation": "requires_env",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".mcp.json",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "mcp_mcp_server_notebooklm",
+      "target": "env_var_notebooklm_disabled_tools",
+      "relation": "requires_env",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".mcp.json",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "mcp_mcp_server_notebooklm",
+      "target": "env_var_notebooklm_profile",
+      "relation": "requires_env",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".mcp.json",
+      "source_location": "L1",
+      "weight": 1.0
     }
   ],
-  "hyperedges": []
+  "hyperedges": [],
+  "built_at_commit": "8827215868a46f2f5d5781a32c18c8fdbaf7a3e9"
 }
