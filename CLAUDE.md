@@ -67,3 +67,5 @@ Rules:
   would clobber the graphify hooks and the skills bootstrap configured above. The plugin
   path adds zero files to the workspace.
 - `ruflo-knowledge-graph` covers the same ground as graphify. Run one or the other, not both.
+
+매뉴얼: 다른 채팅에서 ruflo 에이전트를 쓰는 방법은 [docs/ruflo-manual.md](docs/ruflo-manual.md)에 정리되어 있습니다.
