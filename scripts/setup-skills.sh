@@ -10,7 +10,8 @@
 # Project-level skills live in .claude/skills/ and are committed, so they are
 # already available in any clone without running this. What this script adds is
 # the *machine-level* half: the same four skills under ~/.claude/skills so they
-# apply in every project on this device, plus GSD, which only installs globally.
+# apply in every project on this device, plus GSD, which only installs globally,
+# plus the graphify CLI that the committed PreToolUse hooks depend on.
 
 set -uo pipefail
 
@@ -127,6 +128,54 @@ else
     else
       warn "gsd-core install failed — check network access to registry.npmjs.org"
     fi
+  fi
+fi
+echo
+
+# --- graphify CLI ------------------------------------------------------------
+# The PreToolUse hooks in .claude/settings.json shell out to graphify on every
+# Bash/Grep/Read/Glob call, so a machine without it fails those hooks with
+# exit 127. Installing the CLI is all that is needed here.
+#
+# Deliberately NOT running `graphify install`: that writes its own CLAUDE.md
+# directive and hooks into the workspace, which this repo already has committed.
+echo "graphify CLI:"
+if command -v graphify >/dev/null 2>&1; then
+  ok "graphify $(graphify --version 2>/dev/null || echo present)"
+else
+  missing=$((missing + 1))
+  if [ "$CHECK_ONLY" -eq 1 ]; then
+    add "graphify — not installed"
+  elif ! command -v python3 >/dev/null 2>&1; then
+    warn "python3 not found on PATH; graphify needs Python 3.10+"
+  else
+    add "installing graphify..."
+    # PyPI name is graphifyy while the graphify name is being reclaimed
+    # upstream; the CLI it installs is still called graphify.
+    if python3 -m pip install --user --quiet graphifyy </dev/null >/dev/null 2>&1 ||
+       pipx install graphifyy </dev/null >/dev/null 2>&1; then
+      hash -r 2>/dev/null
+      if command -v graphify >/dev/null 2>&1; then
+        ok "graphify installed"
+        installed_now=$((installed_now + 1))
+      else
+        warn "graphify installed but not on PATH — add your Python user bin dir to PATH"
+      fi
+    else
+      warn "graphify install failed — check network access to pypi.org"
+    fi
+  fi
+fi
+
+# The committed hooks call graphify by absolute path; warn when this machine
+# resolves it somewhere else, since the hooks would silently fail.
+graphify_bin="$(command -v graphify 2>/dev/null || true)"
+if [ -n "$graphify_bin" ] && [ -f "$REPO_ROOT/.claude/settings.json" ]; then
+  hook_bin="$(sed -n 's|.*"command": "\([^"]*graphify\)[^"]*".*|\1|p' \
+              "$REPO_ROOT/.claude/settings.json" | head -1)"
+  if [ -n "$hook_bin" ] && [ "$hook_bin" != "graphify" ] && [ "$hook_bin" != "$graphify_bin" ]; then
+    warn "hooks call $hook_bin but graphify is at $graphify_bin"
+    log "update the hook paths in .claude/settings.json, or symlink the expected path"
   fi
 fi
 echo
