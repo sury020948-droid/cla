@@ -1,0 +1,7 @@
+# Runtime artifacts from ruflo/claude-flow CLI commands (e.g. `npx @claude-flow/cli doctor|status`).
+# These are local state/caches, not source — never commit them.
+.claude-flow/
+.swarm/
+.claude/proven-config.json
+.claude/.proven-config-version
+ruvector.db
